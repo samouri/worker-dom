@@ -125,25 +125,26 @@ const IIFEModules = [
       terser(),
     ],
   },
-  {
-    input: 'output/main-thread/index.js',
-    output: {
-      file: 'dist/debug/main.js',
-      format: 'iife',
-      name: 'MainThread',
-      sourcemap: true,
-    },
-    plugins: [
-      commonjs(),
-      nodeResolve(),
-      removeWorkerWhitespace(),
-      replace({ WORKER_DOM_DEBUG: true }),
-      babelPlugin({
-        transpileToES5: true,
-        allowConsole: true,
-      }),
-    ],
-  },
+  // {
+  //   input: 'output/main-thread/index.js',
+  //   output: {
+  //     file: 'dist/debug/main.js',
+  //     format: 'iife',
+  //     name: 'MainThread',
+  //     sourcemap: true,
+  //   },
+  //   plugins: [
+  //     commonjs(),
+  //     nodeResolve(),
+  //     removeWorkerWhitespace(),
+  //     replace({ WORKER_DOM_DEBUG: true }),
+  //     babelPlugin({
+  //       transpileToES5: true,
+  //       allowConsole: true,
+  //     }),
+  //   ],
+  // },
 ];
 
-export default [...ESModules, ...IIFEModules];
+//export default [...ESModules, ...IIFEModules];
+export default IIFEModules;

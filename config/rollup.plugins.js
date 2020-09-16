@@ -28,7 +28,19 @@ const walk = require('acorn-walk');
  * - allowPostMessage Should we allow postMessage to/from the Worker?
  */
 export function babelPlugin({ transpileToES5, allowConsole = false, allowPostMessage = true }) {
-  const targets = transpileToES5 ? { browsers: ['last 2 versions', 'ie >= 10', 'safari >= 7'] } : { esmodules: true };
+  const targets = transpileToES5
+    ? {
+        browsers: [
+          'last 2 Chrome versions',
+          'last 2 Firefox versions',
+          'last 2 Edge versions',
+          'last 2 Opera versions',
+          'last 2 UCAndroid versions',
+          'ie 11',
+          'safari 8',
+        ],
+      }
+    : { esmodules: true };
   const exclude = allowConsole ? ['error', 'warn', 'trace', 'info', 'log', 'time', 'timeEnd'] : [];
 
   return babel({
@@ -44,6 +56,7 @@ export function babelPlugin({ transpileToES5, allowConsole = false, allowPostMes
           bugfixes: true,
           useBuiltIns: transpileToES5 ? 'usage' : false,
           corejs: transpileToES5 ? '3.6' : undefined,
+          debug: true,
         },
       ],
     ],
